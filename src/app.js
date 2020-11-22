@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class IndecisionApp extends React.Component {
   constructor(props) {
     super(props);
@@ -41,20 +42,18 @@ class IndecisionApp extends React.Component {
   handleRemoveOption(optionToRemove) {
     this.setState((prevState) => ({options: prevState.options.filter((option) => optionToRemove !== option)}))
   }
+=======
+// import { square, add } from './utils';
+// console.log('app.js is running');
 
-  handlePick() {
-    const randomNum = Math.floor(Math.random() * this.state.options.length);
-    const option = this.state.options[randomNum];
-    alert(option);
-  }
+// console.log(square(5));
+// console.log(add(5,6));
+>>>>>>> Add and configure webpack to application.
 
-  handleAddOption(option) {
-    if(!option) {
-      return 'Option cant be empty'
-    } else if(this.state.options.indexOf(option) > -1) {
-      return 'Option already exists'
-    }
+import isSenior, { isAdult, canDrink } from './person';
 
+
+<<<<<<< HEAD
     this.setState((prevState) => ({options: prevState.options.concat(option)}));
   }
 
@@ -172,3 +171,8 @@ class AddOption extends React.Component {
 }
 
 ReactDOM.render(<IndecisionApp options = {['First', 'Last']} />, document.getElementById('app'));
+=======
+console.log(isAdult(17));
+console.log(canDrink(17));
+console.log(isSenior(64));
+>>>>>>> Add and configure webpack to application.
