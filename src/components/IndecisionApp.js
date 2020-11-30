@@ -5,15 +5,32 @@ import Options from './Options';
 import AddOption from './AddOption';
 
 export default class IndecisionApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      options: []
-    };
-    this.handleRemoveOptions = this.handleRemoveOptions.bind(this);
-    this.handleRemoveOption = this.handleRemoveOption.bind(this);
-    this.handlePick = this.handlePick.bind(this);
-    this.handleAddOption = this.handleAddOption.bind(this);
+  state = {
+    options: []
+  };
+
+  handleRemoveOptions = () => {
+    this.setState(() => ({ options: [] }));
+  }
+
+  handleRemoveOption = (optionToRemove) => {
+    this.setState((prevState) => ({ options: prevState.options.filter((option) => optionToRemove !== option) }))
+  }
+
+  handlePick = () => {
+    const randomNum = Math.floor(Math.random() * this.state.options.length);
+    const option = this.state.options[randomNum];
+    alert(option);
+  }
+
+  handleAddOption = (option) => {
+    if (!option) {
+      return 'Option cant be empty'
+    } else if (this.state.options.indexOf(option) > -1) {
+      return 'Option already exists'
+    }
+
+    this.setState((prevState) => ({ options: prevState.options.concat(option) }));
   }
 
   componentDidMount() {
@@ -38,30 +55,6 @@ export default class IndecisionApp extends React.Component {
 
   componentWillUnmount() {
     console.log('componentWillUnmount');
-  }
-
-  handleRemoveOptions() {
-    this.setState(() => ({ options: [] }));
-  }
-
-  handleRemoveOption(optionToRemove) {
-    this.setState((prevState) => ({ options: prevState.options.filter((option) => optionToRemove !== option) }))
-  }
-
-  handlePick() {
-    const randomNum = Math.floor(Math.random() * this.state.options.length);
-    const option = this.state.options[randomNum];
-    alert(option);
-  }
-
-  handleAddOption(option) {
-    if (!option) {
-      return 'Option cant be empty'
-    } else if (this.state.options.indexOf(option) > -1) {
-      return 'Option already exists'
-    }
-
-    this.setState((prevState) => ({ options: prevState.options.concat(option) }));
   }
 
   render() {
